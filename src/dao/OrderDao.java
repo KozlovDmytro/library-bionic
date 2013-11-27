@@ -79,6 +79,38 @@ public class OrderDao {
 		return orders;
 
 	}
+	
+	public List<Order> getOrdersByUserName(String name) {
+		List<Order> orders = new ArrayList<Order>();
+		UserDao userDao = new UserDao();
+		User currUser = userDao.getUserByLogin(name) ;
+		ResultSet result;
+		try {
+			c = DaoLibrary.startConnection();
+			ps = c.prepareStatement("SELECT * FROM Library.Order WHERE id_user=?; ");
+			ps.setInt(1, currUser.getId());
+			result = ps.executeQuery();
+
+			while (result.next()) {
+				Order currOrder = new Order();
+				currOrder.setId(result.getInt("id"));
+				User user = userDao.getUserById(result.getInt("id_user"));
+				currOrder.setUser(user);
+				Book book = bookDao.getBookById(result.getInt("id_book"));
+				currOrder.setBook(book);
+				orders.add(currOrder);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			DaoLibrary.softStop(st);
+			DaoLibrary.softStop(c);
+		}
+		return orders;
+
+	}
 
 	public void insertInOrder(int orderBookId, int orderUserId) {
 		try {

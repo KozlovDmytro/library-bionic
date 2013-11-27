@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="/WEB-INF/libraryTag.tld" prefix="libraryTag" %>
+<jsp:useBean id="orders" scope="request" class="java.util.ArrayList" />
 <jsp:useBean id="books" scope="request" class="java.util.ArrayList" />
 <jsp:useBean id="orderBookId" scope="request" class="java.lang.String" />
 <jsp:useBean id="orderMessage" scope="request" class="java.lang.String" />
@@ -46,8 +47,18 @@
 				</form>
 				
 			<%=orderMessage%>
+			</br>
+			
+			<h2>To view current orders <br>
+				press "Show orders"</h2>
+				<form method="POST" action=/library/ShowUserOrders > 
+					<input type="submit" value="Show orders">
+				</form>
+				<libraryTag:ShowAllOrders 
+				orders="<%= orders %>"/> 
 		 	</td> 
 		</tr>
+	
 	</table> 	
 	</br>
 	</br>

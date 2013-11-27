@@ -70,6 +70,17 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 </servlet-mapping>
 
 <servlet>
+	<display-name>ShowUserOrders</display-name>
+	<servlet-name>ShowUserOrders</servlet-name>
+	<servlet-class>servlets.ShowUserOrdersServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>ShowUserOrders</servlet-name>
+	<url-pattern>/ShowUserOrders</url-pattern>
+</servlet-mapping>
+
+<servlet>
 	<display-name>order</display-name>
 	<servlet-name>MakeOrder</servlet-name>
 	<servlet-class>servlets.MakeOrderServlet</servlet-class>
