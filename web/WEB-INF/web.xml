@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4"
+xmlns="http://java.sun.com/xml/ns/j2ee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>library</display-name>
+ <filter>
+        <filter-name>encoding-filter</filter-name>
+        <filter-class>
+            org.apache.catalina.filters.SetCharacterEncodingFilter
+        </filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>encoding-filter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+<servlet>
+	<display-name>authentification</display-name>
+	<servlet-name>LoginController</servlet-name>
+	<servlet-class>servlets.LoginControllerServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>LoginController</servlet-name>
+	<url-pattern>/authentification</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<display-name>ReturnBook</display-name>
+	<servlet-name>ReturnBook</servlet-name>
+	<servlet-class>servlets.ReturnBookServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>ReturnBook</servlet-name>
+	<url-pattern>/ReturnToLibrary</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<display-name>search</display-name>
+	<servlet-name>BookSearch</servlet-name>
+	<servlet-class>servlets.BookSearchServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>BookSearch</servlet-name>
+	<url-pattern>/BookSearch</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<display-name>ShowOrders</display-name>
+	<servlet-name>ShowOrders</servlet-name>
+	<servlet-class>servlets.ShowOrdersServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>ShowOrders</servlet-name>
+	<url-pattern>/ShowOrders</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<display-name>order</display-name>
+	<servlet-name>MakeOrder</servlet-name>
+	<servlet-class>servlets.MakeOrderServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>MakeOrder</servlet-name>
+	<url-pattern>/MakeOrder</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<display-name>ReadingRoom</display-name>
+	<servlet-name>ReadingRoom</servlet-name>
+	<servlet-class>servlets.GiveBookToReadingRoomServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>ReadingRoom</servlet-name>
+	<url-pattern>/GiveToReadingRoom</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<display-name>Card</display-name>
+	<servlet-name>Card</servlet-name>
+	<servlet-class>servlets.GiveBookToCardServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>Card</servlet-name>
+	<url-pattern>/GiveToCard</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<display-name>showReadingRoom</display-name>
+	<servlet-name>showReadingRoom</servlet-name>
+	<servlet-class>servlets.ShowReadingRoomServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>showReadingRoom</servlet-name>
+	<url-pattern>/ShowReadingRoom</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<display-name>showAllCard</display-name>
+	<servlet-name>showAllCard</servlet-name>
+	<servlet-class>servlets.ShowCardServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>showAllCard</servlet-name>
+	<url-pattern>/ShowCards</url-pattern>
+</servlet-mapping>
+
+<session-config>
+		<session-timeout>30</session-timeout>
+</session-config>
+<welcome-file-list>
+	<welcome-file> index.jsp </welcome-file>
+	
+</welcome-file-list>
+<login-config>
+<auth-method>BASIC</auth-method>
+</login-config>
+
+
+<resource-ref>
+	<description>My SQL Datasource</description>
+	<res-ref-name>jdbc/library</res-ref-name>	
+	<res-type>javax.sql.DataSource</res-type>
+	<res-auth>Container</res-auth>
+</resource-ref>
+</web-app>
