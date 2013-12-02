@@ -1,10 +1,14 @@
 package servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.log4j.Logger;
+
 import dao.UserDao;
 import entity.*;
 
@@ -22,12 +26,10 @@ public class LoginControllerServlet extends ParentServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		String login = req.getParameter("login");
-		String pass = req.getParameter("pass");
+		String pass = req.getParameter("password");
 
 		User user = userDao.getUserByLogin(login);
-		System.out.println("login= " + login);
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!");
-		System.out.println("user= " + user);
+		
 		if (pass.equals(user.getPass()) && (user.getAccess() == 0)) {
 			HttpSession session = req.getSession();
 			session.setAttribute("login", login);
@@ -38,6 +40,7 @@ public class LoginControllerServlet extends ParentServlet {
 			goToPage("/user.jsp", req, resp);
 		} else {
 			req.setAttribute("note", "There is no such Login or Password!");
+			logger.error("not authorized access!");
 			goToPage("/index.jsp", req, resp);
 		}
 	}

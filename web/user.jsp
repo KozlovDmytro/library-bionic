@@ -39,7 +39,6 @@
 				<h2>Please enter book's Id in field and press "Make Order"</h2> 	
 		 		</br>
 		 		</br>
-		 		</br>
 		 		<form method="POST" action="/library/MakeOrder" >
 					<b> Book Id </b> 
 					<input type="text" name="bookId" size="20" > <br><br>

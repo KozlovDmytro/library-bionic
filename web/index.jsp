@@ -7,21 +7,21 @@
 			Login
 		</title>
 		<link rel="stylesheet" type="text/css" href="index.css">
-
+		<script src="passEnc.js"></script>
+		
 	</head>
 	<body>
 		<div class="wrapper_body">
      		<div class="cbm_wrap ">
 		<h1>Please enter your login and password </h1>
 		</br>
-		
-		<form method="POST" action="/library/authentification">
-			<b> <span style="padding:0px 16px;">Login</span> </b> <input type="text" name="login" size="20"> <br><br>
-			<b> Password </b> <input type="password" name="pass" size="20">
+				
+		 <b> <span style="padding:0px 12px;">Login</span> </b> <input type="text" id = "login" name="login" size="20"> <br><br>
+			<b> Password </b> <input type="password" id = "password" name="pass" size="20">
 			</br>
 			</br>
-			 <input type="submit" value="Sign in"> 
-		</form>		
+		<button onclick="post_to_url('/library/authentification','POST',document.getElementById('login').value, document.getElementById('password').value)">Try it</button> 
+
 		<hr>
 		<table>
 			<tr>
