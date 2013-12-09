@@ -20,7 +20,7 @@
 			<b> Password </b> <input type="password" id = "password" name="pass" size="20">
 			</br>
 			</br>
-		<button onclick="post_to_url('/library/authentification','POST',document.getElementById('login').value, document.getElementById('password').value)">Try it</button> 
+		<button onclick="post_to_url('/library/authentification','POST',document.getElementById('login').value, document.getElementById('password').value)">Sign in</button> 
 
 		<hr>
 		<table>
